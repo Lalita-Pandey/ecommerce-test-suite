@@ -21,6 +21,9 @@ public class LoginPage {
     @FindBy(css = "a[href='/logout']")
     WebElement logoutLink;
 
+    @FindBy(css = "p[style='color: red;']")
+    WebElement errorMessage;
+
     public LoginPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -40,7 +43,17 @@ public class LoginPage {
         loginButton.click();
     }
 
+    public boolean  isErrorMessageDisplayed(){
+        return errorMessage.isDisplayed();
+
+    }
+
+
     public boolean isLoggedIn() {
         return logoutLink.isDisplayed();
+    }
+
+    public void clickLogout() {
+        logoutLink.click();
     }
 }
